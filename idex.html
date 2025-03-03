@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAS - Shift Allocation System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="main-header">
+            <div class="logo">
+                <span class="logo-sas">SAS</span>
+                <span class="logo-text">Shift Allocation System</span>
+            </div>
+            <div class="header-actions">
+                <button class="btn-help" onclick="showHelp()">
+                    <i class="fas fa-question-circle"></i> Aiuto
+                </button>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <div class="controls">
+                <h2><i class="fas fa-cogs"></i> Shift Allocation </h2>
+                
+                <div class="form-group">
+                    <label><i class="fas fa-clock"></i> Ora di inizio (hh:mm):</label>
+                    <input type="text" id="startTime" placeholder="Es. 09:00">
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fas fa-clock"></i> Ora di fine (hh:mm):</label>
+                    <input type="text" id="endTime" placeholder="Es. 17:00">
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fas fa-user-tag"></i> Ruolo:</label>
+                    <select id="targetRole">
+                        <option value="Supervisor">Supervisor</option>
+                        <option value="Mentor">Mentor</option>
+                        <option value="Admin">Admin</option>
+                        <option value="QC">QC</option>
+                        <option value="Cleaning">Cleaning</option>
+                        <option value="Training">Training</option>
+                        <option value="Wrap">Wrap</option>
+                        <option value="RCB">RCB</option>
+                        <option value="Pick">Pick</option>
+                        <option value="Abs">Abs</option>
+                        <option value="Pausa">Pausa</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fas fa-users"></i> Nomi (separati da virgola):</label>
+                    <textarea id="names" placeholder="Es. Alex,Maria,Luigi"></textarea>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn-primary" onclick="allocateShifts()">
+                        <i class="fas fa-calendar-plus"></i> Alloca
+                    </button>
+                    <button class="btn-danger" onclick="clearAll()">
+                        <i class="fas fa-trash-alt"></i> Cancella
+                    </button>
+                    <button class="btn-secondary" onclick="exportData()">
+                        <i class="fas fa-file-export"></i> Esporta
+                    </button>
+                    <button class="btn-summary" onclick="updateSummary()">
+                        <i class="fas fa-chart-pie"></i> Aggiorna Riepilogo
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid-wrapper">
+                <div class="grid-container">
+                    <div id="grid" class="data-grid"></div>
+                </div>
+            </div>
+
+            <div class="summary">
+                <h2><i class="fas fa-chart-bar"></i> Riepilogo Ore</h2>
+                <div id="summaryTable"></div>
+            </div>
+        </div>
+
+        <div class="loading-overlay" id="loadingOverlay">
+            <div class="loading-spinner"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
